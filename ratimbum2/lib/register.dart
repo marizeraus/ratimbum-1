@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ratimbum2/network/login.dart';
 
 class registerpage extends StatefulWidget{
 
@@ -72,7 +73,9 @@ class registerpagestate extends State<registerpage>{
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: (){},
+        onPressed: (){
+          loginhandler.register(context, emailController.text, passwordController.text, confirmpwController.text);
+        },
         child: Text("Cadastrar", 
         textAlign: TextAlign.center,
         ),

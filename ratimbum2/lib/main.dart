@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ratimbum2/register.dart';
 import 'package:ratimbum2/sucesspage.dart';
+import 'package:ratimbum2/network/login.dart' as login;
 
 void main() => runApp(MyApp());
 
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Ra Tim Bum',
       theme: ThemeData(
 
         // This is the theme of your application.
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Ra Tim Bum'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -48,6 +50,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     final passwordField = TextField(obscureText: true,
+        controller: passwordController,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Password",
@@ -78,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => sucesspage(emailController.text)));
+          login.loginhandler.sign_in(context, emailController.text, passwordController.text);
         },
         child: Text("Login", 
         textAlign: TextAlign.center,
@@ -96,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: (){
           Navigator.push(context, MaterialPageRoute(builder: (context) => registerpage()));
         },
-        child: Text("Cadastre=se", 
+        child: Text("Cadastre-se", 
         textAlign: TextAlign.center,
         ),
       ),
