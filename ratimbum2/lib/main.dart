@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ratimbum2/network/login.dart';
 import 'package:ratimbum2/register.dart';
 import 'package:ratimbum2/sucesspage.dart';
-import 'package:ratimbum2/network/login.dart' as login;
 
 void main() => runApp(MyApp());
 
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ra Tim Bum',
+      title: 'Flutter Demo',
       theme: ThemeData(
 
         // This is the theme of your application.
@@ -61,7 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
         decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Email",
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+          focusColor: Color(0xff01A0C7), 
+          hoverColor: Color(0xff01A0C7)
         ),
     );
 
@@ -70,7 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
         decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Password",
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+          focusColor: Color(0xff01A0C7)
         ),
     );
 
@@ -82,10 +85,12 @@ class _MyHomePageState extends State<MyHomePage> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: (){
-          login.loginhandler.sign_in(context, emailController.text, passwordController.text);
+          loginhandler.sign_in(context, emailController.text, passwordController.text);
+//          Navigator.push(context, MaterialPageRoute(builder: (context) => sucesspage(emailController.text)));
         },
         child: Text("Login", 
         textAlign: TextAlign.center,
+        style: TextStyle(color: Color(0xfafafaff)),
         ),
       ),
     );
@@ -102,6 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         child: Text("Cadastre-se", 
         textAlign: TextAlign.center,
+        style: TextStyle(color: Color(0xfafafaff)),
+
         ),
       ),
     );
@@ -110,6 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: Color(0xff01A0C7)
       ),
       body: Center(
         child: Container(

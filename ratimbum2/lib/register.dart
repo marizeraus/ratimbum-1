@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ratimbum2/network/login.dart';
+import 'package:ratimbum2/network/login.dart' as login;
 
 class registerpage extends StatefulWidget{
 
@@ -74,20 +74,20 @@ class registerpagestate extends State<registerpage>{
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: (){
-          loginhandler.register(context, emailController.text, passwordController.text, confirmpwController.text);
+          login.loginhandler.register(context, emailController.text, passwordController.text, confirmpwController.text, nameController.text);
         },
         child: Text("Cadastrar", 
         textAlign: TextAlign.center,
+        style: TextStyle(color: Color(0xfafafaff)),
         ),
       ),
     );
 
 
-
-
     return Scaffold( 
       appBar: AppBar(
         title: Text("Cadastro"),
+        backgroundColor: Color(0xff01A0C7)
       ),
       body: Center(
         child: Container(
