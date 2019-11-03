@@ -28,7 +28,7 @@ class loginhandler{
 
   }
 
-    static Future<int> sign_in(BuildContext context, String email, String password) async {
+  static Future<int> sign_in(BuildContext context, String email, String password) async {
     Map<String, String> headers = {"Content-type": "application/json"};
     String json = '{ "email": "'+email+'","password": "'+password+'"}';
     print(json);
@@ -38,11 +38,11 @@ class loginhandler{
     print(response.body);
     print(url);
     if(response.statusCode==200)
-    toast.Toast.show("login realizado com sucesso", context,duration: toast.Toast.LENGTH_LONG, gravity: toast.Toast.BOTTOM);
+      //toast.Toast.show("login realizado com sucesso", context,duration: toast.Toast.LENGTH_LONG, gravity: toast.Toast.BOTTOM);
+      return 1;
     else
-      toast.Toast.show("email/senha incorreto", context,duration: toast.Toast.LENGTH_LONG, gravity: toast.Toast.BOTTOM);
-
-  
+      //toast.Toast.show("email/senha incorreto", context,duration: toast.Toast.LENGTH_LONG, gravity: toast.Toast.BOTTOM);
+      return 0;
   }
 
 }

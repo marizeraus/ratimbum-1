@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: (){
           loginhandler.sign_in(context, emailController.text, passwordController.text);
-//          Navigator.push(context, MaterialPageRoute(builder: (context) => sucesspage(emailController.text)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => sucesspage(emailController.text)));
         },
         child: Text("Login", 
         textAlign: TextAlign.center,
