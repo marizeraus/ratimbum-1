@@ -54,16 +54,23 @@ class sucesspage extends StatelessWidget{
       appBar: AppBar(
         title: Text("Sucesso"),
       ),
-      body: FutureBuilder<List<Photo>>(
-        future: fetchPhotos(http.Client()),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) print(snapshot.error);
+      body: Stack( 
+        children: <Widget>[
+            FutureBuilder<List<Photo>>(
+            future: fetchPhotos(http.Client()),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) print(snapshot.error);
 
-          return snapshot.hasData
-              ? PhotosList(photos: snapshot.data)
-              : Center(child: CircularProgressIndicator());
-        },
-      )
+              return snapshot.hasData
+                  ? PhotosList(photos: snapshot.data)
+                  : Center(child: CircularProgressIndicator());
+            },
+          ),
+          FloatingActionButton(
+            child: Icon(Icons.add),
+          )
+        ],
+    )
     );
   }
 }
