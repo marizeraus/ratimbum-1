@@ -63,7 +63,7 @@ class sucesspage extends StatelessWidget{
               ? PhotosList(photos: snapshot.data)
               : Center(child: CircularProgressIndicator());
         },
-    )
+      )
     );
   }
 }
