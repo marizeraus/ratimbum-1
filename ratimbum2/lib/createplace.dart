@@ -16,10 +16,13 @@ class CreatePlaceState extends State<CreatePlace>{
   TextEditingController nameController = new TextEditingController();
   TextEditingController observationsController = new TextEditingController();
   TextEditingController placeController = new TextEditingController();
+  Future<File> imageFile;
 
 
   @override
   Widget build(BuildContext context) {
+
+    
     final name = TextField(
       controller: nameController,
               obscureText: false,
@@ -53,7 +56,7 @@ class CreatePlaceState extends State<CreatePlace>{
     final uploadImage = RaisedButton(
       child: Text("Selecionar imagens"),
       onPressed: (){
-        file = choose();
+        pickImageFromGallery(ImageSource.gallery);
       },
     );
 
@@ -69,16 +72,30 @@ class CreatePlaceState extends State<CreatePlace>{
 
     return Scaffold(floatingActionButton: fab,
     appBar: AppBar(),
-    body: Column(
+    body: Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: double.infinity,
+          child: SingleChildScrollView(
+            child: Padding(
+            padding: const EdgeInsets.all(36.0),
+              child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         name,
-        file==null ? Text("No Image Selected") : FileImage(file),
+        SizedBox(height: 25.0),
+        showImage(),
+        SizedBox(height: 25.0),
         uploadImage,
+        SizedBox(height: 25.0),
         observations,
+        SizedBox(height: 25.0),
         local,
       ],
     ),
+    )
+    )
+    )
     );
   }
   
@@ -87,5 +104,38 @@ class CreatePlaceState extends State<CreatePlace>{
     var file = await ImagePicker.pickImage(source: ImageSource.gallery);
     return file.path;
   }
+
+  pickImageFromGallery(ImageSource source) {
+    setState(() {
+      imageFile = ImagePicker.pickImage(source: source);
+    });
+  }
+
+    Widget showImage() {
+    return FutureBuilder<File>(
+      future: imageFile,
+      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.data != null) {
+          return Image.file(
+            snapshot.data,
+            width: 300,
+            height: 300,
+          );
+        } else if (snapshot.error != null) {
+          return const Text(
+            'Error Picking Image',
+            textAlign: TextAlign.center,
+          );
+        } else {
+          return const Text(
+            'No Image Selected',
+            textAlign: TextAlign.center,
+          );
+        }
+      },
+    );
+  }
+ 
 
 }
