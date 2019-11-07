@@ -27,6 +27,7 @@ dependencies:
   toast: ^0.1.5
   image_picker:
   path:
+  path_provider:
 
 
 dev_dependencies:

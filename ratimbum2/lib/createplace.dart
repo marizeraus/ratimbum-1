@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
+import 'package:ratimbum2/showplace.dart';
 import 'model/place.dart';
 
 
@@ -17,6 +18,7 @@ class CreatePlaceState extends State<CreatePlace>{
   TextEditingController observationsController = new TextEditingController();
   TextEditingController placeController = new TextEditingController();
   Future<File> imageFile;
+  File path;
 
 
   @override
@@ -61,11 +63,14 @@ class CreatePlaceState extends State<CreatePlace>{
     );
 
     final fab = FloatingActionButton(onPressed: (){
-      List<FileImage> img = new List<FileImage>();
-      img.add(FileImage(file));
+      List<File> img = new List<File>();
+      img.add(path);
 
       var place = new Place(nameController.text, placeController.text, observationsController.text, img);
+      place.createFile();
       print("AEEEE");
+      Navigator.push(context, MaterialPageRoute(builder: (context) => showPlace(place)));
+
     },
     child: Icon(Icons.save),
     );
@@ -117,11 +122,13 @@ class CreatePlaceState extends State<CreatePlace>{
       builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.data != null) {
+              path = snapshot.data;
           return Image.file(
             snapshot.data,
             width: 300,
             height: 300,
           );
+
         } else if (snapshot.error != null) {
           return const Text(
             'Error Picking Image',
