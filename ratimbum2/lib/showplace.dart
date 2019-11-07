@@ -39,9 +39,5 @@ class ShowPlaceState extends State<showPlace>{
       ),
     );
     
-  }
-
-
-
-  
+  } 
 }

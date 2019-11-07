@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:ratimbum2/createplace.dart';
+import 'package:toast/toast.dart';
 
 Future<List<Photo>> fetchPhotos(http.Client client) async {
   final response =
@@ -53,7 +54,13 @@ class sucesspage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sucesso"),
+        title: Text("Espaços Disponíveis"),
+        actions: <Widget>[
+          IconButton(onPressed: (){
+            Toast.show("Busca não implementada", context, duration: Toast.LENGTH_LONG, gravity: Toast.TOP);
+          },
+          icon: Icon(Icons.search))
+        ],
       ),
       body: Stack( 
         children: <Widget>[
