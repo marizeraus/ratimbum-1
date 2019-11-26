@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ratimbum2/createplace.dart';
 import 'package:ratimbum2/loginpage.dart';
+import 'package:ratimbum2/loginpage.dart' as prefix0;
+import 'package:ratimbum2/main.dart';
 import 'package:ratimbum2/model/db_test.dart';
 import 'package:ratimbum2/model/globals.dart' as globals;
 import 'package:ratimbum2/register.dart';
@@ -26,6 +28,17 @@ Widget selectdrawer(BuildContext context){
                 color: Colors.orange,
               ),
             ),
+              ListTile(
+              title: Text('Início'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+              },
+            ),
+
             ListTile(
               title: Text('Cadastrar Espaços'),
               onTap: () {
@@ -72,9 +85,20 @@ Widget selectdrawer(BuildContext context){
             DrawerHeader(
               child: Text('Ra Tim Bum'),
               decoration: BoxDecoration(
-                color: Colors.green,
+                color: Colors.orange,
               ),
             ),
+            ListTile(
+              title: Text('Início'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+              },
+            ),
+
             ListTile(
               title: Text('Login'),
               onTap: () {
