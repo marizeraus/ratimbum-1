@@ -4,11 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
+import 'package:ratimbum2/model/db_test.dart';
 import 'package:ratimbum2/showplace.dart';
+import 'package:sqflite/sqflite.dart';
 import 'model/place.dart';
+import 'model/globals.dart' as globals;
 
 
 class CreatePlace extends StatefulWidget{
+
   @override
   CreatePlaceState createState() => CreatePlaceState();
   
@@ -17,8 +21,12 @@ class CreatePlaceState extends State<CreatePlace>{
   TextEditingController nameController = new TextEditingController();
   TextEditingController observationsController = new TextEditingController();
   TextEditingController placeController = new TextEditingController();
+  TextEditingController phoneController = new TextEditingController();
   Future<File> imageFile;
   File path;
+  var database;
+  CreatePlaceState();
+
 
 
   @override
@@ -54,6 +62,17 @@ class CreatePlaceState extends State<CreatePlace>{
         ),
     );
 
+    final phone = TextField(
+      controller: phoneController,
+              obscureText: false,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Telefone de Contato",
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))
+        ),
+
+    ) ;
+
     var file;
     final uploadImage = RaisedButton(
       child: Text("Selecionar imagens"),
@@ -66,9 +85,10 @@ class CreatePlaceState extends State<CreatePlace>{
       List<File> img = new List<File>();
       img.add(path);
 
-      var place = new Place(nameController.text, placeController.text, observationsController.text, img);
+      var place = new Place(null, nameController.text, placeController.text, observationsController.text, path.path, phoneController.text);
       place.createFile();
       print("AEEEE");
+//      globals.database.insertPlace(place);
       Navigator.push(context, MaterialPageRoute(builder: (context) => showPlace(place)));
 
     },

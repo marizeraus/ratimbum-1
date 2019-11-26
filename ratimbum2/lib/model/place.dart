@@ -10,24 +10,31 @@ class Place{
   String name;
   String local;
   String observations;
-  List<File> imagelist;
+  String imagepath;
+  String phone;
+  int id;
 
 
-  Place(String name, String local, String observations, List<File> imagelist){
+  Place(var id, String name, String local, String observations, String imagepath, String phone){
+    this.id = id;
     this.name = name;
     this.local = local;
     this.observations = observations;
-    this.imagelist = imagelist;
-    print(imagelist.first.path);
+    this.imagepath = imagepath;
+    this.phone = phone;
   }
 
-  Map<String, dynamic> toJson() =>
-    {
+  Map<String, dynamic> toJson(){
+    return    {
       'name': name,
       'observations': observations,
       'local': local,
-      'image': imagelist.first.path
+      'imagepath': imagepath,
+      'phone': phone
     };
+  }
+
+
 
 
     void createFile() async {

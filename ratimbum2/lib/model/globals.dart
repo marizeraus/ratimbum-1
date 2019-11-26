@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ratimbum2/model/db_test.dart';
 import 'package:ratimbum2/model/globals.dart' as globals;
+import 'package:ratimbum2/register.dart';
+import 'package:sqflite/sqflite.dart';
 bool isloggedin = false;
+
+Future<Database> database = null;
 
 Widget selectdrawer(BuildContext context){
   if (globals.isloggedin){
@@ -43,6 +48,7 @@ Widget selectdrawer(BuildContext context){
             ListTile(
               title: Text('Sair'),
               onTap: (){
+                isloggedin = false;
                 Navigator.pop(context);
               },
               ),
@@ -69,6 +75,7 @@ Widget selectdrawer(BuildContext context){
             ListTile(
               title: Text('Login'),
               onTap: () {
+                          //Navigator.push(context, MaterialPageRoute(builder: (context) => sucesspage(emailController.text)));
                 // Update the state of the app
                 // ...
                 // Then close the drawer
@@ -81,8 +88,8 @@ Widget selectdrawer(BuildContext context){
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                globals.isloggedin = true;
                 Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => registerpage()));
               },
             ),
           ],

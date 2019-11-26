@@ -18,7 +18,7 @@ class ShowPlaceState extends State<showPlace>{
   ShowPlaceState(this.place);
   @override
   Widget build(BuildContext context) {
-    FileImage img = FileImage(File.fromUri(Uri.parse(place.imagelist.first.path)));
+    FileImage img = FileImage(File.fromUri(Uri.parse(place.imagepath)));
     return Scaffold(
       appBar: AppBar(),
       body: Column(
