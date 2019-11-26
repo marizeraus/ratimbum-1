@@ -4,7 +4,7 @@ import 'package:ratimbum2/register.dart';
 import 'package:ratimbum2/sucesspage.dart';
 import 'package:ratimbum2/model/globals.dart' as globals;
 
-class RegisterPage extends StatelessWidget {
+class LoginPage extends StatelessWidget {
 
 
   
@@ -86,6 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: (){
+          globals.isloggedin = true;
           loginhandler.sign_in(context, emailController.text, passwordController.text);
           Navigator.push(context, MaterialPageRoute(builder: (context) => sucesspage(emailController.text)));
         },

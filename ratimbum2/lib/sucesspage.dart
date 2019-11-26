@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:ratimbum2/createplace.dart';
+import 'package:ratimbum2/model/globals.dart';
 import 'package:toast/toast.dart';
 
 Future<List<Photo>> fetchPhotos(http.Client client) async {
@@ -62,6 +63,7 @@ class sucesspage extends StatelessWidget{
           icon: Icon(Icons.search))
         ],
       ),
+      drawer: selectdrawer(context),
       body: Stack( 
         children: <Widget>[
             FutureBuilder<List<Photo>>(

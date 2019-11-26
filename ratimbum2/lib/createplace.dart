@@ -97,6 +97,7 @@ class CreatePlaceState extends State<CreatePlace>{
 
     return Scaffold(floatingActionButton: fab,
     appBar: AppBar(),
+    drawer: globals.selectdrawer(context),
     body: Container(
           alignment: Alignment.center,
           width: double.infinity,
@@ -116,6 +117,8 @@ class CreatePlaceState extends State<CreatePlace>{
         observations,
         SizedBox(height: 25.0),
         local,
+        SizedBox(height: 25.0),
+        phone,
       ],
     ),
     )

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:ratimbum2/model/globals.dart';
 import 'package:toast/toast.dart';
 
 import 'model/place.dart';
@@ -21,6 +22,7 @@ class ShowPlaceState extends State<showPlace>{
     FileImage img = FileImage(File.fromUri(Uri.parse(place.imagepath)));
     return Scaffold(
       appBar: AppBar(),
+      drawer: selectdrawer(context),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[Text(place.name, style: TextStyle(fontSize: 50.0, color: Colors.green)),

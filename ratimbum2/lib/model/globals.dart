@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ratimbum2/createplace.dart';
+import 'package:ratimbum2/loginpage.dart';
 import 'package:ratimbum2/model/db_test.dart';
 import 'package:ratimbum2/model/globals.dart' as globals;
 import 'package:ratimbum2/register.dart';
@@ -31,6 +33,7 @@ Widget selectdrawer(BuildContext context){
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CreatePlace()));
               },
             ),
             ListTile(
@@ -80,6 +83,8 @@ Widget selectdrawer(BuildContext context){
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+
               },
             ),
             ListTile(
