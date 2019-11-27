@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ratimbum2/network/login.dart';
 import 'package:ratimbum2/register.dart';
+import 'package:ratimbum2/showplace.dart';
 import 'package:ratimbum2/sucesspage.dart';
 import 'package:ratimbum2/model/globals.dart' as globals;
 import 'package:sqflite/sqflite.dart';
@@ -63,64 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     globals.setplaces();
-    globals.placelist;
-    final emailfield = TextField(
-      controller: emailController,
-      obscureText: false,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Email",
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-          focusColor: Colors.orange, 
-          hoverColor: Colors.orange
-        ),
-    );
 
-    final passwordField = TextField(obscureText: true,
-        controller: passwordController,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Password",
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-          focusColor: Colors.orange
-        ),
-    );
 
-    final loginButton = Material(
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(30.0),
-      color: Colors.orange,
-      child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: (){
-          loginhandler.sign_in(context, emailController.text, passwordController.text);
-          Navigator.push(context, MaterialPageRoute(builder: (context) => sucesspage(emailController.text)));
-        },
-        child: Text("Login", 
-        textAlign: TextAlign.center,
-        style: TextStyle(color: Color(0xfafafaff)),
-        ),
-      ),
-    );
-
-    final registerbutton = Material(
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(30.0),
-      color: Color(0xff01A0C7),
-      child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => registerpage()));
-        },
-        child: Text("Cadastre-se", 
-        textAlign: TextAlign.center,
-        style: TextStyle(color: Color(0xfafafaff)),
-
-        ),
-      ),
-    );
 
 
     return Scaffold(
@@ -141,15 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                emailfield,
-                SizedBox(height: 25.0),
-                passwordField, 
-                SizedBox(height: 25.0),
-                loginButton,
-                SizedBox(height: 25.0),
-                registerbutton
-              ],        
+              children: displayList(),        
             ),
           ),
           )
@@ -157,5 +96,39 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     drawer: globals.selectdrawer(context)
     );
+  }
+
+  List<Widget> displayList(){
+    List<Widget> widgetList = new List<Widget>();
+    for(var i=0; i<globals.placelist.length; i++){
+      var place = globals.placelist[i];
+      var image;
+      if(place.isasset){
+        image = Image.asset(place.imagepath);
+      }
+      else{
+        image = Image(image: FileImage(File.fromUri(Uri.parse(place.imagepath))));
+      }
+      
+      widgetList.add(
+        new GestureDetector(
+        onTap: (){
+          globals.searchPlace("flamengo");
+        Navigator.push(context, MaterialPageRoute(builder: (context) => showPlace(place)));
+        },
+        child: Container(
+          padding: new EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+          color: Colors.green,
+          child: Column(children: <Widget>[
+          image,
+          Text(place.name),
+          Text(place.local)
+
+          ],),),
+          )
+        );
+      widgetList.add(SizedBox(height:10.0));
+    }
+    return widgetList;
   }
 }

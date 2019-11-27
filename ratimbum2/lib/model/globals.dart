@@ -137,5 +137,17 @@ Widget selectdrawer(BuildContext context){
           ],
         ),
       );
+  }
 
-}
+  List<Place> searchPlace(String search){
+    search.toLowerCase();
+    List<Place> searchList = new List<Place>();
+    for (var i=0; i<placelist.length; i++){
+      var place = placelist[i];
+      if (place.name.toLowerCase().contains(search) || place.local.toLowerCase().contains(search) || place.observations.toLowerCase().contains(search)){
+        searchList.add(place);
+      }
+    }
+    return searchList;
+
+  }
