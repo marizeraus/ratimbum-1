@@ -59,10 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   _MyHomePageState(){
-    if(globals.database == null){
-    globals.database = db.newDb();
-
-    }
   }
   @override
   Widget build(BuildContext context) {

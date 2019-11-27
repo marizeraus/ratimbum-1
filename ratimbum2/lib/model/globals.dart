@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:ratimbum2/createplace.dart';
 import 'package:ratimbum2/loginpage.dart';
 import 'package:ratimbum2/main.dart';
+import 'package:ratimbum2/model/data.dart';
 import 'package:ratimbum2/model/globals.dart' as globals;
 import 'package:ratimbum2/model/place.dart';
 import 'package:ratimbum2/register.dart';
 import 'package:sqflite/sqflite.dart';
 bool isloggedin = false;
 
-Future<Database> database = null;
+
+Response response;
 
 List<Place> placelist = new List<Place>();
 
@@ -24,7 +26,7 @@ Widget selectdrawer(BuildContext context){
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('NOME'),
+              child: Text(response.data.fullName),
               decoration: BoxDecoration(
                 color: Colors.orange,
               ),
