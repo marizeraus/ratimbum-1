@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:ratimbum2/createplace.dart';
 import 'package:ratimbum2/loginpage.dart';
-import 'package:ratimbum2/loginpage.dart' as prefix0;
 import 'package:ratimbum2/main.dart';
-import 'package:ratimbum2/model/db_test.dart';
 import 'package:ratimbum2/model/globals.dart' as globals;
+import 'package:ratimbum2/model/place.dart';
 import 'package:ratimbum2/register.dart';
 import 'package:sqflite/sqflite.dart';
 bool isloggedin = false;
 
 Future<Database> database = null;
+
+List<Place> placelist = new List<Place>();
 
 Widget selectdrawer(BuildContext context){
   if (globals.isloggedin){

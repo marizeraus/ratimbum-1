@@ -88,7 +88,7 @@ class CreatePlaceState extends State<CreatePlace>{
       var place = new Place(null, nameController.text, placeController.text, observationsController.text, path.path, phoneController.text);
       place.createFile();
       print("AEEEE");
-//      globals.database.insertPlace(place);
+      globals.placelist.add(place);
       Navigator.push(context, MaterialPageRoute(builder: (context) => showPlace(place)));
 
     },

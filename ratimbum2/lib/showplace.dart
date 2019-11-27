@@ -23,23 +23,59 @@ class ShowPlaceState extends State<showPlace>{
     return Scaffold(
       appBar: AppBar(),
       drawer: selectdrawer(context),
-      body: Column(
+      body: SingleChildScrollView(
+        child:Column(
+      
         mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[Text(place.name, style: TextStyle(fontSize: 50.0, color: Colors.green)),
-                        SizedBox(height: 25.0),
-          Text(place.local, style: TextStyle(fontSize: 18.0),),                
-          SizedBox(height: 10.0),
-          Text(place.observations, style: TextStyle(fontSize: 18.0),),
-          SizedBox(height: 25.0),
-          Image(image: img,),
-          SizedBox(height: 25.0),
-          RaisedButton(child: Text("Entrar em Contato"),
-          onPressed: (){
-            Toast.show("Contato ainda não implementado", context,duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+        children: <Widget>[
+            Align(alignment: Alignment.centerLeft,
+            child: Image(image: img,)),
 
-          },)],
+            Align(child: Container(child:Text(place.name, style: TextStyle(fontSize: 50.0, color: Colors.orange))),
+            alignment: Alignment.centerLeft),
+            Align(child: Container(child:Text(place.local, style: TextStyle(fontSize: 18.0),)),
+            alignment: Alignment.centerLeft,),
+            SizedBox(height: 10.0),
+            Align(child: Container(child:Text(place.observations, style: TextStyle(fontSize: 18.0),)),
+            alignment: Alignment.centerLeft,),
+            SizedBox(height: 25.0),
+            SizedBox(height: 25.0),
+            RaisedButton(child: Text("Entrar em Contato"),
+            onPressed: (){
+              showAlertDialog1(context);
+              Toast.show("Contato ainda não implementado", context,duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+              
+            },)],
       ),
+      )
     );
     
-  } 
+  }
+
+  showAlertDialog1(BuildContext context) 
+{ 
+    // configura o button
+  Widget okButton = FlatButton(
+    child: Text("OK"),
+    onPressed: () { 
+      Navigator.pop(context);
+    },
+  );
+  // configura o  AlertDialog
+  AlertDialog alerta = AlertDialog(
+    title: Text("Telefone de Contato"),
+    content: Text(place.phone),
+    actions: [
+      okButton,
+    ],
+  );
+  // exibe o dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alerta;
+    },
+  );
+}
+ 
 }
