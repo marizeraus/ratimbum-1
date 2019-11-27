@@ -19,9 +19,10 @@ class ShowPlaceState extends State<showPlace>{
   ShowPlaceState(this.place);
   @override
   Widget build(BuildContext context) {
-    FileImage img = FileImage(File.fromUri(Uri.parse(place.imagepath)));
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.orange,
+      ),
       drawer: selectdrawer(context),
       body: SingleChildScrollView(
         child:Column(
@@ -29,9 +30,9 @@ class ShowPlaceState extends State<showPlace>{
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
             Align(alignment: Alignment.centerLeft,
-            child: Image(image: img,)),
+            child: getimage(),),
 
-            Align(child: Container(child:Text(place.name, style: TextStyle(fontSize: 50.0, color: Colors.orange))),
+            Align(child: Container(child:Text(place.name, style: TextStyle(fontSize: 36.0, color: Colors.orange))),
             alignment: Alignment.centerLeft),
             Align(child: Container(child:Text(place.local, style: TextStyle(fontSize: 18.0),)),
             alignment: Alignment.centerLeft,),
@@ -42,9 +43,10 @@ class ShowPlaceState extends State<showPlace>{
             SizedBox(height: 25.0),
             RaisedButton(child: Text("Entrar em Contato"),
             onPressed: (){
+              if(isloggedin)
               showAlertDialog1(context);
-              Toast.show("Contato ainda não implementado", context,duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-              
+              else
+              Toast.show("É necessário logar para ver essa informação", context, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
             },)],
       ),
       )
@@ -58,7 +60,6 @@ class ShowPlaceState extends State<showPlace>{
   Widget okButton = FlatButton(
     child: Text("OK"),
     onPressed: () { 
-      Navigator.pop(context);
     },
   );
   // configura o  AlertDialog
@@ -76,6 +77,15 @@ class ShowPlaceState extends State<showPlace>{
       return alerta;
     },
   );
+}
+
+Widget getimage(){
+  if(place.isasset){
+    return Image.asset(place.imagepath);
+  }
+  else{
+    return Image(image: FileImage(File.fromUri(Uri.parse(place.imagepath))));
+  }
 }
  
 }

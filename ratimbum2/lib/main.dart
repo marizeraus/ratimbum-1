@@ -62,7 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   @override
   Widget build(BuildContext context) {
-
+    globals.setplaces();
+    globals.placelist;
     final emailfield = TextField(
       controller: emailController,
       obscureText: false,

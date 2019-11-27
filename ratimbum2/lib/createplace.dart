@@ -85,7 +85,7 @@ class CreatePlaceState extends State<CreatePlace>{
       List<File> img = new List<File>();
       img.add(path);
 
-      var place = new Place(null, nameController.text, placeController.text, observationsController.text, path.path, phoneController.text);
+      var place = new Place(null, nameController.text, placeController.text, observationsController.text, path.path, phoneController.text, false);
       place.createFile();
       print("AEEEE");
       globals.placelist.add(place);

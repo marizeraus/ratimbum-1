@@ -13,15 +13,17 @@ class Place{
   String imagepath;
   String phone;
   int id;
+  bool isasset;
 
 
-  Place(var id, String name, String local, String observations, String imagepath, String phone){
+  Place(var id, String name, String local, String observations, String imagepath, String phone, bool isasset){
     this.id = id;
     this.name = name;
     this.local = local;
     this.observations = observations;
     this.imagepath = imagepath;
     this.phone = phone;
+    this.isasset = true;
   }
 
   Map<String, dynamic> toJson(){

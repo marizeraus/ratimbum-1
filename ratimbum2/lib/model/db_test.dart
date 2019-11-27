@@ -51,7 +51,7 @@ static Future<Database> newDb() async {
 
     // Convert the List<Map<String, dynamic> into a List<Dog>.
     return List.generate(maps.length, (i) {
-      return Place(maps[i]['id'], maps[i]['name'], maps[i]['local'], maps[i]['observations'], maps[i]['imagepath'], maps[i]['phone']);
+      return Place(maps[i]['id'], maps[i]['name'], maps[i]['local'], maps[i]['observations'], maps[i]['imagepath'], maps[i]['phone'], maps[i]['isasset']);
     });
   }
 
