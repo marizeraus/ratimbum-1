@@ -49,14 +49,19 @@ class ShowPlaceState extends State<showPlace>{
         children: <Widget>[
             Align(alignment: Alignment.centerLeft,
             child: getimage(),),
-
-            Align(child: Container(child:Text(place.name, style: TextStyle(fontSize: 36.0, color: Colors.orange))),
-            alignment: Alignment.centerLeft),
-            Align(child: Container(child:Text(place.local, style: TextStyle(fontSize: 18.0),)),
-            alignment: Alignment.centerLeft,),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Align(child: Container(child:Text(place.name, style: TextStyle(fontSize: 30.0, fontStyle: FontStyle.italic))),
+              alignment: Alignment.centerLeft)),
+            Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child:Align(child: Container(child:Text(place.local, style: TextStyle(fontSize: 18.0, color: Colors.grey, fontStyle: FontStyle.italic),)),
+              alignment: Alignment.centerLeft,),),
             SizedBox(height: 10.0),
-            Align(child: Container(child:Text(place.observations, style: TextStyle(fontSize: 18.0),)),
-            alignment: Alignment.centerLeft,),
+            Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child:Align(child: Container(child:Text(place.observations, style: TextStyle(fontSize: 18.0),)),
+              alignment: Alignment.centerLeft,)),
             SizedBox(height: 25.0),
             SizedBox(height: 25.0),
             RaisedButton(child: Text("Entrar em Contato"),
@@ -75,18 +80,10 @@ class ShowPlaceState extends State<showPlace>{
   showAlertDialog1(BuildContext context) 
 { 
     // configura o button
-  Widget okButton = FlatButton(
-    child: Text("OK"),
-    onPressed: () { 
-    },
-  );
   // configura o  AlertDialog
   AlertDialog alerta = AlertDialog(
     title: Text("Telefone de Contato"),
     content: Text(place.phone),
-    actions: [
-      okButton,
-    ],
   );
   // exibe o dialog
   showDialog(
@@ -99,10 +96,14 @@ class ShowPlaceState extends State<showPlace>{
 
 Widget getimage(){
   if(place.isasset){
-    return Image.asset(place.imagepath);
+    return Padding(
+              padding: const EdgeInsets.all(10),
+              child: Image.asset(place.imagepath));
   }
   else{
-    return Image(image: FileImage(File.fromUri(Uri.parse(place.imagepath))));
+    return Padding(
+              padding: const EdgeInsets.all(10),
+              child:Image(image: FileImage(File.fromUri(Uri.parse(place.imagepath)))));
   }
 }
  

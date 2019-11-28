@@ -89,14 +89,17 @@ class CreatePlaceState extends State<CreatePlace>{
       place.createFile();
       print("AEEEE");
       globals.placelist.add(place);
+      Navigator.pop(context);
       Navigator.push(context, MaterialPageRoute(builder: (context) => showPlace(place)));
+
 
     },
     child: Icon(Icons.save),
+    backgroundColor: Colors.orange,
     );
 
     return Scaffold(floatingActionButton: fab,
-    appBar: AppBar(),
+    appBar: AppBar(backgroundColor: Colors.orange,),
     drawer: globals.selectdrawer(context),
     body: Container(
           alignment: Alignment.center,

@@ -48,14 +48,11 @@ class searchPageState extends State<searchPage> {
           width: double.infinity,
           height: double.infinity,
           child: SingleChildScrollView(
-            child: Padding(
-            padding: const EdgeInsets.all(36.0),
-              child: Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: displayList(),        
             ),
-          ),
           )
         )
       ),
@@ -78,21 +75,28 @@ class searchPageState extends State<searchPage> {
       widgetList.add(
         new GestureDetector(
         onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => showPlace(place)));
+          globals.searchPlace("flamengo");
+        Navigator.push(context, MaterialPageRoute(builder: (context) => showPlace(place)));
         },
         child: Container(
+          margin: new EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
           padding: new EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-          color: Colors.green,
+          decoration: new BoxDecoration(
+            color: Color.fromRGBO(253, 227, 211, 1),
+            shape: BoxShape.rectangle,
+            borderRadius: new BorderRadius.circular(15.0),
+          ),
           child: Column(children: <Widget>[
           image,
-          Text(place.name),
-          Text(place.local)
+          SizedBox(height:6.0),
+          Text(place.name, style: TextStyle(fontSize: 22,fontFamily: 'Montserrat',),),
+          Text(place.local, style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic, fontFamily: 'Montserrat'),)
 
           ],),),
           )
         );
-      widgetList.add(SizedBox(height:10.0));
     }
     return widgetList;
   }
+
 }
