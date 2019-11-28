@@ -7,7 +7,7 @@ import 'package:ratimbum2/model/data.dart';
 import 'package:ratimbum2/model/globals.dart' as globals;
 import 'package:ratimbum2/model/place.dart';
 import 'package:ratimbum2/register.dart';
-import 'package:sqflite/sqflite.dart';
+
 bool isloggedin = false;
 
 
@@ -18,10 +18,10 @@ List<int> myplaces = new List<int>();
 
 void setplaces(){
   if(placelist.length>0) return;
-  var place = new Place(1, "Casa de Festas Chique", "São Paulo", "Casa de Festas com bela vista, para até 200 pessoas, no coração de São Paulo", "lib/assets/festa1.jpeg", "(11)98002-9763", true);
+  var place = new Place(1, "Casa de Festas", "São Paulo", "Casa de Festas com bela vista, para até 200 pessoas, no coração de São Paulo", "lib/assets/festa1.jpeg", "(11)98002-9763", true);
   placelist.add(place);
-  placelist.add(new Place(2, "Churrasqueira na Gávea", "Rio de Janeiro", "Churrasqueira localizada no Clube de Regatas do Flamengo, na Gávea, para até 50 pessoas", "lib/assets/festa2.jpeg", "(21)2742-0690", true));
-  placelist.add(new Place(3, "Pool Party", "Niterói", "Local ideal para festas na piscina, com buffet para até 100 pessoas", "lib/assets/festa3.jpeg", "(21)2742-0690", true));
+  placelist.add(new Place(2, "Churrasqueira", "Rio de Janeiro", "Churrasqueira localizada no Clube de Regatas do Flamengo, na Gávea, para até 50 pessoas", "lib/assets/festa2.jpeg", "(21)2742-0690", true));
+  placelist.add(new Place(3, "Piscina", "Niterói", "Local ideal para festas na piscina, com buffet para até 100 pessoas", "lib/assets/festa3.jpeg", "(21)2742-0690", true));
   placelist.add(new Place(4, "Campo Sintético", "Rio de Janeiro", "Local com campo sintético e churrasqueira, aluguel do campo por hora, capacidade 40 pessoas", "lib/assets/festa4.jpeg", "(21)3600-2931", true));
   placelist.add(new Place(5, "Casa de Festas 2 andares", "Teresópolis", "Casa perfeita para casamentos e festas de debutante, com dois andare , pista de dança, possibilidade de buffet e capacidade de 300 pessoas", "lib/assets/festa5.jpeg", "(21)98110-2830", true));
   placelist.add(new Place(6, "Casa de Festas", "Rio de Janeiro", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis sapien et iaculis facilisis. Morbi egestas lacinia iaculis. Nulla facilisi. Curabitur aliquet arcu eget purus viverra laoreet. Donec molestie imperdiet lorem id aliquet. Aliquam erat volutpat. Duis nec dui quis nulla gravida aliquam sit amet non ex. Suspendisse venenatis diam nulla, non consequat leo tincidunt tristique. Cras blandit sit amet risus posuere lacinia", "lib/assets/festa6.jpeg", "(21)98110-2830", true));

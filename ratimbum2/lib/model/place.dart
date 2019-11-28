@@ -24,7 +24,7 @@ class Place{
     this.observations = observations;
     this.imagepath = imagepath;
     this.phone = phone;
-    this.isasset = true;
+    this.isasset = isasset;
   }
 
   Map<String, dynamic> toJson(){
