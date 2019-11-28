@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ratimbum2/createplace.dart';
 import 'package:ratimbum2/loginpage.dart';
 import 'package:ratimbum2/main.dart';
+import 'package:ratimbum2/manageplaces.dart';
 import 'package:ratimbum2/model/data.dart';
 import 'package:ratimbum2/model/globals.dart' as globals;
 import 'package:ratimbum2/model/place.dart';
@@ -13,6 +14,7 @@ bool isloggedin = false;
 Response response;
 
 List<Place> placelist = new List<Place>();
+List<int> myplaces = new List<int>();
 
 void setplaces(){
   if(placelist.length>0) return;
@@ -22,6 +24,9 @@ void setplaces(){
   placelist.add(new Place(3, "Pool Party", "Niterói", "Local ideal para festas na piscina, com buffet para até 100 pessoas", "lib/assets/festa3.jpeg", "(21)2742-0690", true));
   placelist.add(new Place(4, "Campo Sintético", "Rio de Janeiro", "Local com campo sintético e churrasqueira, aluguel do campo por hora, capacidade 40 pessoas", "lib/assets/festa4.jpeg", "(21)3600-2931", true));
   placelist.add(new Place(5, "Casa de Festas 2 andares", "Teresópolis", "Casa perfeita para casamentos e festas de debutante, com dois andare , pista de dança, possibilidade de buffet e capacidade de 300 pessoas", "lib/assets/festa5.jpeg", "(21)98110-2830", true));
+  placelist.add(new Place(6, "Casa de Festas", "Rio de Janeiro", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis sapien et iaculis facilisis. Morbi egestas lacinia iaculis. Nulla facilisi. Curabitur aliquet arcu eget purus viverra laoreet. Donec molestie imperdiet lorem id aliquet. Aliquam erat volutpat. Duis nec dui quis nulla gravida aliquam sit amet non ex. Suspendisse venenatis diam nulla, non consequat leo tincidunt tristique. Cras blandit sit amet risus posuere lacinia", "lib/assets/festa6.jpeg", "(21)98110-2830", true));
+  placelist.add(new Place(7, "Espaço", "local", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis sapien et iaculis facilisis. Morbi egestas lacinia iaculis. Nulla facilisi. Curabitur aliquet arcu eget purus viverra laoreet. Donec molestie imperdiet lorem id aliquet. Aliquam erat volutpat. Duis nec dui quis nulla gravida aliquam sit amet non ex. Suspendisse venenatis diam nulla, non consequat leo tincidunt tristique. Cras blandit sit amet risus posuere lacinia", "lib/assets/festa7.jpeg", "(21)98110-2830", true));
+  placelist.add(new Place(8, "Festa", "local", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis sapien et iaculis facilisis. Morbi egestas lacinia iaculis. Nulla facilisi. Curabitur aliquet arcu eget purus viverra laoreet. Donec molestie imperdiet lorem id aliquet. Aliquam erat volutpat. Duis nec dui quis nulla gravida aliquam sit amet non ex. Suspendisse venenatis diam nulla, non consequat leo tincidunt tristique. Cras blandit sit amet risus posuere lacinia", "lib/assets/festa8.jpeg", "(21)98110-2830", true));
 }
 
 Widget selectdrawer(BuildContext context){
@@ -69,6 +74,8 @@ Widget selectdrawer(BuildContext context){
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => managePlaces()));
+
               },
             ),
             Container(
@@ -151,3 +158,5 @@ Widget selectdrawer(BuildContext context){
     return searchList;
 
   }
+
+  

@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
       else{
         image = Image(image: FileImage(File.fromUri(Uri.parse(place.imagepath))));
       }
-      
+      if(place.exists)
       widgetList.add(
         new GestureDetector(
         onTap: (){

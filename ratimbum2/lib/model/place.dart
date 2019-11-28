@@ -14,6 +14,7 @@ class Place{
   String phone;
   int id;
   bool isasset;
+  bool exists = true;
 
 
   Place(var id, String name, String local, String observations, String imagepath, String phone, bool isasset){
