@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ratimbum2/network/login.dart';
 import 'package:ratimbum2/register.dart';
+import 'package:ratimbum2/searchpage.dart';
 import 'package:ratimbum2/showplace.dart';
 import 'package:ratimbum2/sucesspage.dart';
 import 'package:ratimbum2/model/globals.dart' as globals;
 import 'package:sqflite/sqflite.dart';
+import 'package:toast/toast.dart';
 
 import 'model/db_test.dart';
 
@@ -59,8 +61,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
+  TextEditingController searchController = new TextEditingController();
   _MyHomePageState(){
   }
   @override
@@ -73,8 +74,20 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: TextField(
+          controller: searchController,
           decoration: InputDecoration(hintText: "Pesquisar"),
         ),
+        actions: <Widget>[
+        
+            IconButton(onPressed: (){
+              if(searchController.text.length>0){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => searchPage(globals.searchPlace(searchController.text))));
+
+              }
+          },
+          icon: Icon(Icons.search))
+
+        ],
         backgroundColor: Colors.orange
       ),
       body: Center(

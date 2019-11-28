@@ -2,8 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:ratimbum2/model/globals.dart';
+import 'package:ratimbum2/searchpage.dart';
 import 'package:toast/toast.dart';
-
+import 'package:ratimbum2/model/globals.dart' as globals;
 import 'model/place.dart';
 
 class showPlace extends StatefulWidget{
@@ -16,12 +17,29 @@ class showPlace extends StatefulWidget{
 
 class ShowPlaceState extends State<showPlace>{
   final Place place;
+  var searchController = new TextEditingController();
+
   ShowPlaceState(this.place);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange,
+                title: TextField(
+          controller: searchController,
+          decoration: InputDecoration(hintText: "Pesquisar"),
+        ),
+        actions: <Widget>[
+        
+            IconButton(onPressed: (){
+              if(searchController.text.length>0){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => searchPage(globals.searchPlace(searchController.text))));
+              }
+          },
+          icon: Icon(Icons.search))
+
+        ],
+
       ),
       drawer: selectdrawer(context),
       body: SingleChildScrollView(

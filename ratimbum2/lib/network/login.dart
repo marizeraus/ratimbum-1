@@ -26,8 +26,11 @@ class loginhandler{
     var response = await http.post(url, headers: headers, body: json);
     print(response.statusCode);    
     print(response.body);
-    if(response.statusCode==200)
-    toast.Toast.show("cadastro realizado com sucesso", context,duration: toast.Toast.LENGTH_LONG, gravity: toast.Toast.BOTTOM);
+    if(response.statusCode==200){
+      toast.Toast.show("cadastro realizado com sucesso", context,duration: toast.Toast.LENGTH_LONG, gravity: toast.Toast.BOTTOM);
+      sign_in(context, email, password);
+
+    }
     else
       toast.Toast.show("cadastro falhou", context,duration: toast.Toast.LENGTH_LONG, gravity: toast.Toast.BOTTOM);
 
@@ -45,7 +48,8 @@ class loginhandler{
     globals.response = Response.fromJson(map);
     if(response.statusCode==200){
       globals.isloggedin = true;
-      Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()));
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
       //toast.Toast.show("login realizado com sucesso", context,duration: toast.Toast.LENGTH_LONG, gravity: toast.Toast.BOTTOM);
       return 1;
     }
